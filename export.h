@@ -7,7 +7,12 @@
 
 #define MAX_SHOOTERS 100
 #define MAX_NAME_LEN 20
-//Сунцов Никита бОИС-242
+
+float findAverage(int(*)[100], int, int);
+int findMax(int(*)[100], int, int);
+int findMin(int(*)[100], int, int);
+int sum_points(int(*), int);
+
 /*
 * функция для создания и обновления значений в файл results.txt
 * a - матрица значений выстрелов
@@ -34,14 +39,11 @@ void exportDataToFile(int a[MAX_SHOOTERS][MAX_SHOOTERS], char names[MAX_SHOOTERS
         fprintf(file, "\n");
     }
 
-    float average;
-    int max_result, min_result;
-    analyzeResults(a, L, n, &average, &max_result, &min_result);
 
     fprintf(file, "\nАнализ результатов:\n");
-    fprintf(file, "Средний результат: %.2f\n", average);
-    fprintf(file, "Максимальный результат: %d\n", max_result);
-    fprintf(file, "Минимальный результат: %d\n", min_result);
+    fprintf(file, "Средний результат: %.2f\n", findAverage(a, L, n));
+    fprintf(file, "Максимальный результат: %d\n", findMax(a, L, n));
+    fprintf(file, "Минимальный результат: %d\n", findMin(a, L, n));
 
     fprintf(file, "\nОчки каждого стрелка:\n");
     for (int i = 0; i < L; i++) {
